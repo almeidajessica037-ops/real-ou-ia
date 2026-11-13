@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Real ou IA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Vídeos com modelos virtuais para apresentar a coleção da sua loja em Reels, TikTok e anúncios.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: abertura ameixa com o vídeo do portfólio → modelos → como funciona → ritmo de vídeos → planos → pedido → rodapé.
+   Visual de marca único (ameixa + marfim), igual em tema claro e escuro. */
+:root{
+  --ameixa:#35113E;
+  --ameixa-2:#4A1E55;
+  --ameixa-3:#22091F;
+  --marfim:#FFF8EF;
+  --marfim-2:#F6EBDD;
+  --lilas:#CF8EF5;
+  --lilas-suave:#EBD7F6;
+  --tinta:#2A1030;
+  --tinta-2:#6B5470;
+  --linha:#E6D6CB;
+  --erro:#A3203A;
+  --branco:#FFFFFF;
+  --font-display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --font-texto:"Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --max:1160px;
+  --raio:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--marfim);color:var(--tinta);font-family:var(--font-texto);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ameixa)}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.secao{padding-block:clamp(64px,9vw,112px)}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.titulo-secao{font-size:clamp(2rem,4.6vw,3.25rem);max-width:18ch}
+.lead{font-size:1.0625rem;color:var(--tinta-2);max-width:60ch}
+.cab-secao{display:grid;gap:14px;margin-bottom:clamp(32px,5vw,52px)}
+:focus-visible{outline:3px solid var(--lilas);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 1rem/1 var(--font-texto);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-claro{background:var(--marfim);color:var(--ameixa)}
+.btn-claro:hover{background:var(--lilas-suave)}
+.btn-contorno-claro{border-color:rgba(255,248,239,.55);color:var(--marfim);background:transparent}
+.btn-contorno-claro:hover{border-color:var(--marfim);background:rgba(255,248,239,.08)}
+.btn-escuro{background:var(--ameixa);color:var(--marfim)}
+.btn-escuro:hover{background:var(--ameixa-2)}
+.btn-contorno{border-color:var(--ameixa);color:var(--ameixa);background:transparent}
+.btn-contorno:hover{background:var(--ameixa);color:var(--marfim)}
+
+/* Cabeçalho */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--ameixa);color:var(--marfim);border-bottom:1px solid rgba(255,248,239,.1)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;letter-spacing:.02em}
+.marca img{width:44px;height:44px;border-radius:10px}
+.nav{display:flex;align-items:center;gap:22px;font-size:.9375rem}
+.nav a{text-decoration:none;opacity:.85}
+.nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.nav .btn{min-height:42px;padding:0 18px;font-size:.9375rem;opacity:1}
+@media (max-width:760px){.nav a:not(.btn){display:none}}
+
+/* Abertura + vídeo do portfólio */
+.abertura{background:var(--ameixa);color:var(--marfim);overflow:hidden}
+.abertura .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(36px,6vw,80px);align-items:center;padding-block:clamp(48px,8vw,96px)}
+.abertura h1{font-size:clamp(2.75rem,7vw,5.25rem);font-weight:500}
+.abertura h1 em{font-style:italic;color:var(--lilas)}
+.abertura .texto{display:grid;gap:24px;min-width:0}
+.abertura .eyebrow{color:var(--lilas)}
+.abertura .lead{color:rgba(255,248,239,.82);font-size:clamp(1.0625rem,1.6vw,1.1875rem)}
+.abertura .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.formatos{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.formatos span{font-size:.8125rem;font-weight:600;letter-spacing:.04em;padding:6px 12px;border:1px solid rgba(207,142,245,.45);border-radius:999px;color:var(--lilas-suave)}
+.portfolio{justify-self:center;display:grid;gap:12px;width:min(100%,360px);scroll-margin-top:calc(env(safe-area-inset-top,0px) + 84px)}
+.moldura-video{border-radius:22px;overflow:hidden;background:var(--ameixa-3);box-shadow:0 30px 70px -30px rgba(0,0,0,.7);border:1px solid rgba(255,248,239,.14)}
+.moldura-video video{width:100%;height:auto;aspect-ratio:576/1024;background:var(--ameixa-3)}
+.legenda-video{font-size:.875rem;color:rgba(255,248,239,.72);text-align:center}
+@media (max-width:860px){.abertura .wrap{grid-template-columns:1fr}}
+
+/* Modelos */
+.modelos{background:var(--marfim-2)}
+.grade-modelos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
+.modelo{display:grid;gap:12px;align-content:start}
+.modelo .foto{position:relative;aspect-ratio:9/16;border-radius:var(--raio);overflow:hidden;background:var(--lilas-suave);max-width:100%;outline:3px solid transparent;outline-offset:3px;transition:outline-color .2s}
+.modelo .foto img{width:100%;height:100%;object-fit:cover}
+.modelo .foto .vazio{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;color:var(--ameixa);font-size:.875rem}
+.modelo .foto .vazio strong{display:block;font-family:var(--font-display);font-size:3rem;font-weight:500}
+.modelo.ativa .foto{outline-color:var(--ameixa)}
+.modelo .selo{position:absolute;top:10px;left:10px;background:var(--ameixa);color:var(--marfim);font-size:.75rem;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.04em}
+.modelo .info{display:grid;gap:2px}
+.modelo h3{font-size:1.75rem}
+.modelo .desc{font-size:.875rem;color:var(--tinta-2)}
+.modelo .btn{min-height:46px;padding:0 16px;font-size:.9375rem;width:100%}
+.nota-valor{margin-top:clamp(24px,3vw,32px);display:flex;align-items:center;gap:12px;font-size:1.0625rem;font-weight:600;color:var(--ameixa)}
+.nota-valor svg{width:22px;height:22px;flex:none;color:var(--ameixa)}
+.avatar{margin-top:20px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:clamp(22px,3vw,32px);border:1.5px dashed var(--ameixa);border-radius:var(--raio);background:var(--marfim)}
+.avatar.ativa{border-style:solid;box-shadow:0 0 0 3px var(--lilas-suave)}
+.avatar .icone{width:64px;height:64px;border-radius:50%;background:var(--ameixa);color:var(--lilas);display:grid;place-items:center}
+.avatar .icone svg{width:30px;height:30px}
+.avatar .titulo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px}
+.avatar h3{font-size:1.625rem}
+.avatar p{color:var(--tinta-2);max-width:62ch}
+.etiqueta{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--lilas-suave);color:var(--ameixa)}
+@media (max-width:860px){.grade-modelos{grid-template-columns:repeat(2,minmax(0,1fr))}.avatar{grid-template-columns:1fr}.avatar .btn{width:100%}}
+
+/* Como funciona */
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);counter-reset:passo}
+.passos li{counter-increment:passo;display:grid;gap:12px;align-content:start;padding-top:20px;border-top:2px solid var(--ameixa);min-width:0}
+.passos li::before{content:"Passo " counter(passo);font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.passos h3{font-size:1.25rem;font-family:var(--font-texto);font-weight:700;letter-spacing:0;line-height:1.35}
+.passos p{color:var(--tinta-2);font-size:.9375rem}
+@media (max-width:900px){.passos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.passos{grid-template-columns:1fr}}
+
+/* Ritmo de vídeos */
+.ritmo{background:var(--marfim-2)}
+.grade-ritmo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4vw,24px)}
+.ritmo-card{display:grid;gap:18px;padding:clamp(22px,3vw,32px);border-radius:var(--raio);background:var(--marfim);border:1px solid var(--linha);min-width:0}
+.ritmo-card h3{font-size:1.75rem}
+.ritmo-card p{color:var(--tinta-2)}
+.ritmo-card .planos-nomes{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.linha-mes{position:relative;display:grid;grid-template-columns:repeat(4,1fr);padding-top:30px}
+.linha-mes::before{content:"";position:absolute;left:0;right:0;top:14px;height:2px;background:var(--linha)}
+.linha-mes span{position:relative;font-size:.75rem;font-weight:600;color:var(--tinta-2);text-align:center}
+.marcas{position:absolute;left:0;right:0;top:0;height:30px}
+.marca-video{position:absolute;top:4px;width:22px;height:22px;border-radius:6px;background:var(--ameixa);transform:translateX(-50%);border:2px solid var(--marfim)}
+.marca-video.lilas{background:var(--lilas)}
+@media (max-width:760px){.grade-ritmo{grid-template-columns:1fr}}
+
+/* Planos */
+.planos{background:var(--ameixa);color:var(--marfim)}
+.planos .eyebrow{color:var(--lilas)}
+.planos .lead{color:rgba(255,248,239,.8)}
+.grade-planos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);align-items:stretch}
+.plano{position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(22px,3vw,30px);border-radius:var(--raio);background:var(--marfim);color:var(--tinta);outline:3px solid transparent;outline-offset:3px;transition:outline-color .2s;min-width:0}
+.plano.ativo{outline-color:var(--lilas)}
+.plano .tipo{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.plano h3{font-size:2rem}
+.preco{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.preco strong{font-family:var(--font-display);font-weight:600;font-size:2.5rem;line-height:1;color:var(--ameixa);font-variant-numeric:tabular-nums}
+.preco span{font-size:.9375rem;color:var(--tinta-2);font-weight:600}
+.preco .sob{font-family:var(--font-texto);font-size:1rem;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--lilas-suave);color:var(--ameixa)}
+.economia{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-size:.875rem;font-weight:700;padding:7px 12px;border-radius:999px;background:var(--ameixa);color:var(--marfim)}
+.economia svg{width:16px;height:16px;color:var(--lilas)}
+.plano .descricao{color:var(--tinta-2);font-size:.9375rem}
+.plano dl{margin:0;display:grid;gap:12px;padding-block:16px;border-block:1px solid var(--linha)}
+.plano dl div{display:grid;gap:2px}
+.plano dt{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)}
+.plano dd{margin:0;font-weight:600;color:var(--tinta)}
+.plano .btn{margin-top:auto;width:100%}
+.condicoes{margin-top:clamp(28px,4vw,40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;font-size:.9375rem;color:rgba(255,248,239,.82)}
+.condicoes div{display:grid;gap:6px;padding-top:16px;border-top:1px solid rgba(255,248,239,.22);min-width:0}
+.condicoes strong{color:var(--marfim);font-weight:700}
+@media (max-width:900px){.grade-planos,.condicoes{grid-template-columns:1fr}}
+
+/* Pedido */
+.orcamento .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:start}
+.form{display:grid;gap:28px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:12px;min-width:0}
+legend,.rotulo{font-weight:700;font-size:1rem;color:var(--ameixa);padding:0;margin-bottom:12px}
+.rotulo{margin-bottom:0}
+.obrig{color:var(--erro);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--linha);background:var(--branco);font-weight:600;font-size:.9375rem;transition:background .2s,border-color .2s,color .2s;cursor:pointer}
+.chip span small{font-weight:700;font-size:.8125rem;color:var(--tinta-2)}
+.chip input:hover + span{border-color:var(--ameixa)}
+.chip input:checked + span{background:var(--ameixa);border-color:var(--ameixa);color:var(--marfim)}
+.chip input:checked + span small{color:var(--lilas-suave)}
+.chip input:focus-visible + span{outline:3px solid var(--lilas);outline-offset:2px}
+.invalido .chip span{border-color:var(--erro)}
+.campo{display:grid;gap:8px}
+.campo input,.campo textarea{width:100%;font:inherit;font-size:1rem;color:var(--tinta);background:var(--branco);border:1.5px solid var(--linha);border-radius:12px;padding:13px 14px;min-height:50px}
+.campo textarea{min-height:104px;resize:vertical}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--ameixa);box-shadow:0 0 0 3px var(--lilas-suave)}
+.campo input[aria-invalid="true"],.campo textarea[aria-invalid="true"]{border-color:var(--erro)}
+.erro{font-size:.875rem;font-weight:600;color:var(--erro)}
+.aviso-avatar{font-size:.875rem;color:var(--ameixa);background:var(--lilas-suave);border-radius:10px;padding:12px 14px}
+.resumo{position:sticky;top:calc(env(safe-area-inset-top,0px) + 88px);display:grid;gap:18px;padding:clamp(22px,3vw,30px);border-radius:var(--raio);background:var(--marfim-2);border:1px solid var(--linha);min-width:0}
+.resumo h3{font-size:1.5rem}
+.resumo-dados{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:.9375rem}
+.resumo-dados dt{font-weight:700;color:var(--tinta-2)}
+.resumo-dados dd{margin:0;font-weight:600;color:var(--tinta);min-width:0}
+.resumo-dados .vazio{color:var(--tinta-2);font-weight:500}
+.resumo-dados .extra{display:block;margin-top:4px}
+.titulo-msg{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.mensagem{white-space:pre-wrap;word-break:break-word;font-size:.9375rem;line-height:1.55;background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:16px;max-height:300px;overflow:auto}
+.envio{display:grid;gap:10px}
+.envio .btn{width:100%}
+.erro-envio{font-size:.875rem;font-weight:700;color:var(--erro);text-align:center}
+.ajuda-envio{font-size:.8125rem;color:var(--tinta-2)}
+.link-texto{background:none;border:0;padding:0;font:inherit;font-size:.8125rem;color:var(--ameixa);font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (max-width:900px){.orcamento .wrap{grid-template-columns:1fr}.resumo{position:static}}
+
+/* Rodapé */
+.rodape{background:var(--ameixa-3);color:var(--marfim)}
+.rodape .wrap{display:grid;gap:24px;padding-block:40px;font-size:.9375rem}
+.pagamento{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding-bottom:24px;border-bottom:1px solid rgba(255,248,239,.16)}
+.pagamento strong{font-family:var(--font-display);font-size:1.375rem;font-weight:500}
+.pagamento span{color:rgba(255,248,239,.75)}
+.rodape-linha{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.rodape .marca img{width:40px;height:40px}
+.rodape a{color:var(--lilas-suave);text-underline-offset:3px}
+
+/* WhatsApp fixo (celular) */
+.wa-fixo{display:none}
+@media (max-width:760px){
+  .wa-fixo{display:grid;place-items:center;position:fixed;z-index:40;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:var(--ameixa);color:var(--marfim);box-shadow:0 10px 28px -8px rgba(34,9,31,.6);border:2px solid var(--marfim);transition:opacity .25s,transform .25s}
+  .wa-fixo svg{width:26px;height:26px}
+  .wa-fixo.oculto{opacity:0;transform:translateY(12px);pointer-events:none}
+  .rodape .wrap{padding-bottom:calc(40px + 70px)}
+}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ameixa);color:var(--marfim);padding:12px 18px;border-radius:999px;font-weight:600;font-size:.9375rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70;max-width:calc(100% - 32px);text-align:center}
+.toast.visivel{opacity:1;transform:translate(-50%,0)}
+section[id]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 76px)}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><img src="assets/logo.png" alt="" width="44" height="44"><span>Real ou IA</span></a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#modelos">Modelos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#planos">Planos</a>
+      <a class="btn btn-claro" href="#orcamento">Monte seu pedido</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="abertura" id="inicio">
+    <div class="wrap">
+      <div class="texto">
+        <p class="eyebrow">Vídeos com modelos virtuais para lojas</p>
+        <h1>Imagine sua coleção <em>em vídeo.</em></h1>
+        <p class="lead">A partir das fotos das suas peças, eu crio vídeos com modelos virtuais para apresentar sua coleção em Reels, TikTok e anúncios.</p>
+        <div class="formatos" aria-label="Formatos"><span>Reels</span><span>TikTok</span><span>Anúncios</span><span>Vertical 9:16</span></div>
+        <div class="acoes">
+          <a class="btn btn-claro" href="#portfolio">Ver o portfólio</a>
+          <a class="btn btn-contorno-claro js-wa-geral" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3Z"/></svg>
+            Falar com Jéssica
+          </a>
+        </div>
+      </div>
+      <figure class="portfolio" id="portfolio" style="margin:0">
+        <div class="moldura-video">
+          <video id="video-portfolio" controls playsinline preload="metadata" src="assets/portfolio.mp4">
+            Seu navegador não conseguiu reproduzir o vídeo.
+          </video>
+        </div>
+        <figcaption class="legenda-video">Portfólio: dê play para ver uma peça apresentada por uma modelo virtual.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="secao modelos" id="modelos">
+    <div class="wrap">
+      <div class="cab-secao">
+        <p class="eyebrow">Modelos</p>
+        <h2 class="titulo-secao">Escolha quem apresenta sua coleção</h2>
+        <p class="lead">Toque em uma modelo para deixá-la marcada no seu pedido. Você pode mudar a escolha depois.</p>
+      </div>
+      <div class="grade-modelos" id="grade-modelos"></div>
+      <p class="nota-valor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Escolha qualquer uma das quatro modelos do portfólio pelo mesmo valor do plano.
+      </p>
+      <div class="avatar" id="cartao-avatar">
+        <div class="icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M19 3v4M17 5h4"/></svg></div>
+        <div>
+          <div class="titulo"><h3>Quero um avatar personalizado</h3><span class="etiqueta">Sob orçamento</span></div>
+          <p>Me conte como você imagina a apresentadora da sua marca. Podemos definir a aparência, o estilo e o cenário de acordo com a sua coleção. O valor e o prazo da personalização são confirmados no orçamento, antes do pagamento.</p>
+        </div>
+        <button class="btn btn-contorno" type="button" data-modelo="avatar">Escolher avatar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="como-funciona">
+    <div class="wrap">
+      <div class="cab-secao">
+        <p class="eyebrow">Como funciona</p>
+        <h2 class="titulo-secao">Do envio das fotos ao vídeo entregue</h2>
+      </div>
+      <ol class="passos">
+        <li><h3>Escolha o plano e a modelo</h3><p>Uma das quatro modelos do portfólio ou um avatar personalizado.</p></li>
+        <li><h3>Envie as fotos das peças</h3><p>Conte o que quer divulgar: uma peça, uma coleção ou uma campanha.</p></li>
+        <li><h3>Confirme o calendário com a Jéssica</h3><p>Vocês combinam as datas de entrega de cada vídeo.</p></li>
+        <li><h3>Receba os vídeos</h3><p>Os vídeos chegam nas datas combinadas, prontos para postar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao ritmo" id="ritmo">
+    <div class="wrap">
+      <div class="cab-secao">
+        <p class="eyebrow">Ritmo de vídeos</p>
+        <h2 class="titulo-secao">Como os vídeos chegam para a loja</h2>
+      </div>
+      <div class="grade-ritmo" id="grade-ritmo"></div>
+    </div>
+  </section>
+
+  <section class="secao planos" id="planos">
+    <div class="wrap">
+      <div class="cab-secao">
+        <p class="eyebrow">Planos</p>
+        <h2 class="titulo-secao">Planos, prazos e ajustes</h2>
+        <p class="lead">Todos os planos incluem a escolha de qualquer modelo do portfólio.</p>
+      </div>
+      <div class="grade-planos" id="grade-planos"></div>
+      <div class="condicoes" id="condicoes"></div>
+    </div>
+  </section>
+
+  <section class="secao orcamento" id="orcamento">
+    <div class="wrap">
+      <form class="form" id="form-orcamento" novalidate>
+        <div class="cab-secao" style="margin-bottom:0">
+          <p class="eyebrow">Pedido</p>
+          <h2 class="titulo-secao">Monte seu pedido</h2>
+          <p class="lead">Suas escolhas viram uma mensagem pronta. Você revisa e envia pelo WhatsApp ou por e-mail. Todos os campos são obrigatórios.</p>
+        </div>
+        <fieldset id="grupo-plano">
+          <legend>Plano <span class="obrig" aria-hidden="true">*</span></legend>
+          <div class="chips" id="chips-plano"></div>
+          <p class="erro" id="erro-plano" hidden>Escolha um plano.</p>
+        </fieldset>
+        <fieldset id="grupo-modelo">
+          <legend>Modelo <span class="obrig" aria-hidden="true">*</span></legend>
+          <div class="chips" id="chips-modelo"></div>
+          <p class="aviso-avatar" id="aviso-avatar" hidden>Avatar personalizado: o valor e o prazo da personalização são confirmados no orçamento, antes do pagamento.</p>
+          <p class="erro" id="erro-modelo" hidden>Escolha uma modelo ou a opção de ajuda.</p>
+        </fieldset>
+        <div class="campo">
+          <label class="rotulo" for="loja">Nome da loja <span class="obrig" aria-hidden="true">*</span></label>
+          <input id="loja" name="loja" type="text" autocomplete="organization" required aria-describedby="erro-loja" placeholder="Ex.: Ateliê Flor de Lis">
+          <p class="erro" id="erro-loja" hidden>Informe o nome da loja.</p>
+        </div>
+        <div class="campo">
+          <label class="rotulo" for="divulgar">O que você quer divulgar? <span class="obrig" aria-hidden="true">*</span></label>
+          <textarea id="divulgar" name="divulgar" required aria-describedby="erro-divulgar" placeholder="Ex.: coleção de verão, vestidos de festa, lançamento do Dia das Mães"></textarea>
+          <p class="erro" id="erro-divulgar" hidden>Conte o que você quer divulgar.</p>
+        </div>
+      </form>
+
+      <aside class="resumo" aria-labelledby="titulo-resumo">
+        <h3 id="titulo-resumo">Resumo do pedido</h3>
+        <dl class="resumo-dados" id="resumo-dados"></dl>
+        <p class="titulo-msg">Mensagem que será enviada</p>
+        <div class="mensagem" id="mensagem" aria-live="polite"></div>
+        <div class="envio">
+          <p class="erro-envio" id="erro-envio" role="alert" hidden>Preencha os campos marcados para enviar o pedido.</p>
+          <a class="btn btn-escuro" id="btn-whatsapp" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3Z"/></svg>
+            Enviar pelo WhatsApp
+          </a>
+          <a class="btn btn-contorno" id="btn-email" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Enviar por e-mail
+          </a>
+          <p class="ajuda-envio">O e-mail não abriu? Escreva para <strong id="email-texto"></strong> e <button type="button" class="link-texto" id="btn-copiar">copie a mensagem</button>.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="pagamento">
+      <strong>Pagamento via Pix ou cartão de crédito</strong>
+      <span>A contratação e o pagamento são combinados no atendimento.</span>
+    </div>
+    <div class="rodape-linha">
+      <span class="marca"><img src="assets/logo.png" alt="" width="40" height="40"><span>Real ou IA • Atendimento com Jéssica</span></span>
+      <a id="rodape-email" href="#"></a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fixo js-wa-geral" id="wa-fixo" href="#" target="_blank" rel="noopener" aria-label="Falar com Jéssica no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3Z"/></svg>
+</a>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =====================================================================
+   ÁREA DE EDIÇÃO — contatos, modelos, planos e condições.
+   Os cartões, o formulário, o resumo e a mensagem leem daqui,
+   então preços e quantidades ficam iguais em toda a página.
+   ===================================================================== */
+const CONFIG = {
+  whatsapp: "5531996141833",                 // só números, com DDI 55 + DDD
+  email: "almeidajessica037@gmail.com",
+  assuntoEmail: "Pedido de vídeos | Real ou IA",
+  rodadasDeAjuste: 1,                        // rodadas de ajuste incluídas por vídeo
+  video: {
+    arquivo: "assets/portfolio.mp4",
+    capa: ""                                 // ex.: "assets/capa.jpg" (vazio = mostra o quadro de 0,5 s)
+  }
+};
+
+/* Modelos: troque "foto" para associar outro arquivo a cada modelo. */
+const MODELOS = [
+  { id: "sara",  nome: "Sara",  descricao: "Ruiva",                 foto: "assets/sara.jpg"  },
+  { id: "luna",  nome: "Luna",  descricao: "Morena",                foto: "assets/luna.jpg"  },
+  { id: "aiko",  nome: "Aiko",  descricao: "Japonesa, cabelo curto", foto: "assets/aiko.jpg" },
+  { id: "bella", nome: "Bella", descricao: "Loira",                 foto: "assets/bella.jpg" }
+];
+
+/* Planos:
+   preco       → número em reais (deixe null para mostrar "Solicitar orçamento")
+   periodo     → texto que acompanha o preço
+   videos      → texto da quantidade de vídeos (cartão, resumo e mensagem)
+   ritmo       → "junto" (vídeos entregues de uma vez) ou "distribuido" (ao longo do mês)
+   comparar    → calcula a economia em relação a outro plano (ex.: 3 meses do mensal) */
+const PLANOS = [
+  {
+    id: "avulso",
+    tipo: "Entrega única",
+    nome: "Pacote Avulso",
+    preco: 250,
+    periodo: "pelo pacote",
+    descricao: "Para uma campanha, um lançamento ou para testar o formato.",
+    videos: "3 vídeos no pacote",
+    qtdPorEntrega: 3,
+    ritmo: "junto",
+    prazo: "Entrega do pacote em até 7 dias úteis"
+  },
+  {
+    id: "mensal",
+    tipo: "Recorrente",
+    nome: "Plano Mensal",
+    preco: 320,
+    periodo: "por mês",
+    descricao: "Para ter vídeos novos ao longo de todo o mês.",
+    videos: "4 vídeos por mês",
+    qtdPorEntrega: 4,
+    ritmo: "distribuido",
+    prazo: "Primeiro vídeo em até 5 dias úteis; demais entregas conforme o calendário combinado"
+  },
+  {
+    id: "trimestral",
+    tipo: "3 meses",
+    nome: "Plano Trimestral",
+    preco: 900,
+    periodo: "pelo trimestre",
+    descricao: "Para planejar campanhas e lançamentos ao longo de três meses.",
+    videos: "4 vídeos por mês, 12 no total",
+    qtdPorEntrega: 4,
+    ritmo: "distribuido",
+    prazo: "Primeiro vídeo em até 5 dias úteis; demais entregas conforme o calendário combinado",
+    comparar: { plano: "mensal", vezes: 3, texto: "em relação a 3 meses do Plano Mensal" }
+  }
+];
+
+/* Condições exibidas abaixo dos planos. {ajustes} vira o texto de CONFIG.rodadasDeAjuste. */
+const CONDICOES = [
+  { titulo: "Quando o prazo começa", texto: "A contagem do prazo começa após a confirmação do pagamento e o recebimento do material completo da loja." },
+  { titulo: "Ajustes", texto: "Inclui {ajustes} por vídeo. O prazo da versão revisada é combinado com a Jéssica." },
+  { titulo: "Avatar personalizado", texto: "Para avatar personalizado, o valor e o prazo são confirmados no orçamento." }
+];
+
+/* Textos da seção "Ritmo de vídeos". */
+const RITMOS = {
+  junto: { titulo: "Os 3 vídeos juntos", texto: "No avulso, a loja recebe os 3 vídeos de uma vez, para uma campanha ou um lançamento." },
+  distribuido: { titulo: "4 vídeos por mês", texto: "No mensal e no trimestral, a loja recebe 4 vídeos por mês, distribuídos ao longo do mês conforme o calendário combinado." }
+};
+/* ===================== FIM DA ÁREA DE EDIÇÃO ===================== */
+
+const OPCOES_EXTRAS = [
+  { id: "avatar", nome: "Avatar personalizado", nota: "sob orçamento" },
+  { id: "ajuda",  nome: "Quero ajuda para escolher" }
+];
+
+const estado = { plano: "", modelo: "", tentouEnviar: false };
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const brl = (n) => "R$ " + Number(n).toLocaleString("pt-BR", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const temPreco = (p) => p.preco !== null && p.preco !== undefined && p.preco !== "";
+const valorPlano = (p) => temPreco(p) ? brl(p.preco) + " " + p.periodo : "sob orçamento";
+const linkWhats = (texto) => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(texto);
+const linkEmail = (texto) => "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent(CONFIG.assuntoEmail) + "&body=" + encodeURIComponent(texto);
+const textoAjustes = () => CONFIG.rodadasDeAjuste === 1 ? "1 rodada de ajustes" : CONFIG.rodadasDeAjuste + " rodadas de ajustes";
+
+function economia(p) {
+  if (!p.comparar || !temPreco(p)) return 0;
+  const base = PLANOS.find(x => x.id === p.comparar.plano);
+  if (!base || !temPreco(base)) return 0;
+  return base.preco * p.comparar.vezes - p.preco;
+}
+
+function fotoHTML(m) {
+  return '<img src="' + esc(m.foto) + '" alt="' + esc(m.nome + ", " + m.descricao.toLowerCase()) + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{className:\'vazio\',innerHTML:\'<div><strong>' + esc(m.nome[0]) + '</strong>Foto da ' + esc(m.nome) + ' em breve</div>\'}))">';
+}
+
+function montarModelos() {
+  $("#grade-modelos").innerHTML = MODELOS.map(m =>
+    '<article class="modelo" data-card-modelo="' + m.id + '">' +
+      '<div class="foto">' + fotoHTML(m) + '<span class="selo" hidden>Selecionada</span></div>' +
+      '<div class="info"><h3>' + esc(m.nome) + '</h3><span class="desc">' + esc(m.descricao) + '</span></div>' +
+      '<button class="btn btn-contorno" type="button" data-modelo="' + m.id + '">Escolher ' + esc(m.nome) + '</button>' +
+    '</article>').join("");
+}
+
+function montarRitmo() {
+  const grupos = { junto: [], distribuido: [] };
+  PLANOS.forEach(p => (grupos[p.ritmo] || (grupos[p.ritmo] = [])).push(p));
+  $("#grade-ritmo").innerHTML = Object.keys(grupos).filter(k => grupos[k].length && RITMOS[k]).map(k => {
+    const planos = grupos[k];
+    const qtd = planos[0].qtdPorEntrega;
+    let marcas = "";
+    for (let i = 0; i < qtd; i++) {
+      const pos = k === "junto" ? 12.5 + (i - (qtd - 1) / 2) * 5 : 12.5 + i * 25;
+      marcas += '<i class="marca-video' + (k === "junto" ? "" : " lilas") + '" style="left:' + pos + '%"></i>';
+    }
+    return '<article class="ritmo-card">' +
+      '<p class="planos-nomes">' + esc(planos.map(p => p.nome).join(" e ")) + '</p>' +
+      '<h3>' + esc(RITMOS[k].titulo) + '</h3>' +
+      '<p>' + esc(RITMOS[k].texto) + '</p>' +
+      '<div class="linha-mes" aria-hidden="true"><div class="marcas">' + marcas + '</div>' +
+        '<span>Semana 1</span><span>Semana 2</span><span>Semana 3</span><span>Semana 4</span></div>' +
+    '</article>';
+  }).join("");
+}
+
+function montarPlanos() {
+  $("#grade-planos").innerHTML = PLANOS.map(p => {
+    const eco = economia(p);
+    return '<article class="plano" data-card-plano="' + p.id + '">' +
+      '<div><p class="tipo">' + esc(p.tipo) + '</p><h3>' + esc(p.nome) + '</h3></div>' +
+      '<p class="preco">' + (temPreco(p)
+        ? '<strong>' + esc(brl(p.preco)) + '</strong><span>' + esc(p.periodo) + '</span>'
+        : '<span class="sob">Solicitar orçamento</span>') + '</p>' +
+      (eco > 0 ? '<p class="economia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Economia de ' + esc(brl(eco)) + ' ' + esc(p.comparar.texto) + '</p>' : '') +
+      '<p class="descricao">' + esc(p.descricao) + '</p>' +
+      '<dl>' +
+        '<div><dt>Vídeos</dt><dd>' + esc(p.videos) + '</dd></div>' +
+        '<div><dt>Prazo</dt><dd>' + esc(p.prazo) + '</dd></div>' +
+        '<div><dt>Ajustes</dt><dd>' + esc(textoAjustes()) + ' por vídeo</dd></div>' +
+      '</dl>' +
+      '<button class="btn btn-escuro" type="button" data-pedir="' + p.id + '">Escolher este plano</button>' +
+    '</article>';
+  }).join("");
+  $("#condicoes").innerHTML = CONDICOES.map(c =>
+    '<div><strong>' + esc(c.titulo) + '</strong><span>' + esc(c.texto.replace("{ajustes}", textoAjustes())) + '</span></div>').join("");
+}
+
+function montarChips() {
+  $("#chips-plano").innerHTML = PLANOS.map(p =>
+    '<label class="chip"><input type="radio" name="plano" id="plano-' + p.id + '" value="' + p.id + '" required><span>' + esc(p.nome) + ' <small>' + esc(temPreco(p) ? brl(p.preco) + " " + p.periodo : "sob orçamento") + '</small></span></label>').join("");
+  $("#chips-modelo").innerHTML = MODELOS.concat(OPCOES_EXTRAS).map(m =>
+    '<label class="chip"><input type="radio" name="modelo" id="modelo-' + m.id + '" value="' + m.id + '" required><span>' + esc(m.nome) + (m.nota ? ' <small>' + esc(m.nota) + '</small>' : '') + '</span></label>').join("");
+}
+
+function nomeModelo(id) {
+  const m = MODELOS.find(x => x.id === id);
+  if (m) return m.nome;
+  const e = OPCOES_EXTRAS.find(x => x.id === id);
+  return e ? e.nome : "";
+}
+
+function dados() {
+  return {
+    plano: PLANOS.find(x => x.id === estado.plano),
+    loja: $("#loja").value.trim(),
+    divulgar: $("#divulgar").value.trim(),
+    avatar: estado.modelo === "avatar"
+  };
+}
+
+function montarMensagem() {
+  const d = dados();
+  const linhas = ["Oi, Jéssica! Vi o portfólio do Real ou IA e quero contratar vídeos para minha loja."];
+  if (d.plano) {
+    linhas.push("Plano: " + d.plano.nome);
+    linhas.push("Valor do plano: " + valorPlano(d.plano) + (d.avatar ? " + personalização do avatar sob orçamento" : ""));
+    linhas.push("Quantidade de vídeos: " + d.plano.videos);
+  }
+  if (estado.modelo) linhas.push("Modelo: " + nomeModelo(estado.modelo));
+  if (d.loja) linhas.push("Minha loja: " + d.loja);
+  if (d.divulgar) linhas.push("Quero divulgar: " + d.divulgar);
+  linhas.push("Podemos combinar os próximos passos?");
+  return linhas.join("\n");
+}
+
+function montarResumo() {
+  const d = dados();
+  const vazio = '<span class="vazio">Não escolhido</span>';
+  $("#resumo-dados").innerHTML =
+    '<dt>Plano</dt><dd>' + (d.plano ? esc(d.plano.nome) : vazio) + '</dd>' +
+    '<dt>Valor</dt><dd>' + (d.plano ? esc(valorPlano(d.plano)) + (d.avatar ? ' <span class="extra etiqueta">Personalização sob orçamento</span>' : '') : vazio) + '</dd>' +
+    '<dt>Vídeos</dt><dd>' + (d.plano ? esc(d.plano.videos) : vazio) + '</dd>' +
+    '<dt>Modelo</dt><dd>' + (estado.modelo ? esc(nomeModelo(estado.modelo)) : vazio) + '</dd>';
+}
+
+function validar(mostrar) {
+  const d = dados();
+  const checks = [
+    { ok: !!d.plano, erro: "#erro-plano", grupo: "#grupo-plano", foco: "#chips-plano input" },
+    { ok: !!estado.modelo, erro: "#erro-modelo", grupo: "#grupo-modelo", foco: "#chips-modelo input" },
+    { ok: !!d.loja, erro: "#erro-loja", campo: "#loja", foco: "#loja" },
+    { ok: !!d.divulgar, erro: "#erro-divulgar", campo: "#divulgar", foco: "#divulgar" }
+  ];
+  if (mostrar) {
+    checks.forEach(c => {
+      $(c.erro).hidden = c.ok;
+      if (c.grupo) $(c.grupo).classList.toggle("invalido", !c.ok);
+      if (c.campo) $(c.campo).setAttribute("aria-invalid", c.ok ? "false" : "true");
+    });
+    $("#erro-envio").hidden = checks.every(c => c.ok);
+  }
+  const primeiro = checks.find(c => !c.ok);
+  return primeiro ? primeiro.foco : null;
+}
+
+function atualizar() {
+  const msg = montarMensagem();
+  $("#mensagem").textContent = msg;
+  $("#btn-whatsapp").href = linkWhats(msg);
+  $("#btn-email").href = linkEmail(msg);
+  $("#aviso-avatar").hidden = estado.modelo !== "avatar";
+  montarResumo();
+  if (estado.tentouEnviar) validar(true);
+  document.querySelectorAll("[data-card-plano]").forEach(el => el.classList.toggle("ativo", el.dataset.cardPlano === estado.plano));
+  document.querySelectorAll("[data-card-modelo]").forEach(el => {
+    const m = MODELOS.find(x => x.id === el.dataset.cardModelo);
+    const ativa = m.id === estado.modelo;
+    el.classList.toggle("ativa", ativa);
+    $(".selo", el).hidden = !ativa;
+    $("button", el).textContent = (ativa ? "Escolhida: " : "Escolher ") + m.nome;
+  });
+  $("#cartao-avatar").classList.toggle("ativa", estado.modelo === "avatar");
+  $("#cartao-avatar button").textContent = estado.modelo === "avatar" ? "Avatar escolhido" : "Escolher avatar";
+  const rp = document.getElementById("plano-" + estado.plano); if (rp) rp.checked = true;
+  const rm = document.getElementById("modelo-" + estado.modelo); if (rm) rm.checked = true;
+}
+
+let toastTimer;
+function avisar(texto) {
+  const t = $("#toast"); t.textContent = texto; t.classList.add("visivel");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("visivel"), 2600);
+}
+
+function irPara(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: reduzir ? "auto" : "smooth", block: "start" });
+}
+
+function aoEnviar(e) {
+  estado.tentouEnviar = true;
+  atualizar(); // garante que o link tenha a mensagem mais recente
+  const foco = validar(true);
+  if (foco) {
+    e.preventDefault();
+    const el = $(foco);
+    if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: "center", behavior: "smooth" }); }
+  }
+}
+
+function iniciar() {
+  const v = $("#video-portfolio");
+  if (CONFIG.video.arquivo) v.src = CONFIG.video.arquivo + (CONFIG.video.capa ? "" : "#t=0.5");
+  if (CONFIG.video.capa) v.poster = CONFIG.video.capa;
+
+  montarModelos(); montarRitmo(); montarPlanos(); montarChips();
+
+  const msgGeral = "Oi, Jéssica! Vi o portfólio do Real ou IA e quero saber mais sobre os vídeos com modelos virtuais para a minha loja.";
+  document.querySelectorAll(".js-wa-geral").forEach(a => a.href = linkWhats(msgGeral));
+  $("#email-texto").textContent = CONFIG.email;
+  $("#rodape-email").textContent = CONFIG.email;
+  $("#rodape-email").href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent(CONFIG.assuntoEmail);
+
+  document.addEventListener("click", e => {
+    const pedir = e.target.closest("[data-pedir]");
+    if (pedir) { estado.plano = pedir.dataset.pedir; atualizar(); irPara("orcamento"); return; }
+    const mod = e.target.closest("[data-modelo]");
+    if (mod) {
+      estado.modelo = mod.dataset.modelo; atualizar();
+      avisar(nomeModelo(estado.modelo) + " marcada no seu pedido");
+    }
+  });
+  $("#form-orcamento").addEventListener("change", e => {
+    if (e.target.name === "plano") estado.plano = e.target.value;
+    if (e.target.name === "modelo") estado.modelo = e.target.value;
+    atualizar();
+  });
+  $("#form-orcamento").addEventListener("input", atualizar);
+  $("#form-orcamento").addEventListener("submit", e => e.preventDefault());
+  $("#btn-whatsapp").addEventListener("click", aoEnviar);
+  $("#btn-email").addEventListener("click", aoEnviar);
+
+  $("#btn-copiar").addEventListener("click", () => {
+    const texto = montarMensagem();
+    const selecionar = () => {
+      const r = document.createRange(); r.selectNodeContents($("#mensagem"));
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      avisar("Mensagem selecionada. Copie e cole no seu e-mail.");
+    };
+    try {
+      navigator.clipboard.writeText(texto).then(() => avisar("Mensagem copiada"), selecionar);
+    } catch (err) { selecionar(); }
+  });
+
+  // Esconde o botão fixo de WhatsApp quando outros botões de contato estão na tela
+  const fixo = $("#wa-fixo");
+  if ("IntersectionObserver" in window) {
+    const visiveis = new Set();
+    const obs = new IntersectionObserver(entradas => {
+      entradas.forEach(en => en.isIntersecting ? visiveis.add(en.target) : visiveis.delete(en.target));
+      fixo.classList.toggle("oculto", visiveis.size > 0);
+    }, { threshold: 0.05 });
+    [".resumo", ".abertura .acoes", ".rodape"].forEach(s => { const el = $(s); if (el) obs.observe(el); });
+  }
+
+  atualizar();
+}
+iniciar();
+</script>
+</body>
+</html>
